@@ -1,20 +1,20 @@
-# mid_testing_25504
 
 Library Management System
 Midterm Project - Software Testing
-This project implements a Library Management System with a focus on testing various functionalities to ensure quality and reliability.
+This project implements a Library Management System focused on testing various functionalities.
 
-Features
-1.Create Locations: Province, District, Sector, Cell, Village.
-2.Get Province from Village: Returns the province for a given village.
-3.Get Location by ID: Returns a person’s location based on their ID.
-4.Create Account: Create a user account and hash the password for security.
-5.User Authentication: Authenticate users with hashed passwords.
-6.Register for Membership: Register users as library members.
-7.Borrow Book: Borrow books and track borrowed items.
-8.Validate Borrowing Limit: Ensure users do not exceed their membership borrowing limits.
-9.Assign Book to Shelf: Assign books to specific shelves.
-10.Assign Shelf to Room: Assign shelves to library rooms.
-11.Check Room Book Count: Count how many books are in a room.
-12.Find Room with Few Books: Identify the room with the fewest books.
-13.Calculate Late Return Fees: Compute fees for overdue book returns.
+Features:
+
+Create locations from Province, District, Sector, Cell, and Village.
+Get the province from a village.
+Get a person's location (province) using their ID.
+Create an account and hash the password for encryption.
+Authenticate users.
+Register for library membership.
+Borrow a book.
+Validate that a user doesn't borrow more books than allowed by their membership.
+Assign a book to a shelf.
+Assign a shelf to a room.
+Check how many books are in a specific room.
+Find the room with the fewest books.
+Calculate late return fees.
