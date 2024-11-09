@@ -1,42 +1,41 @@
 package com.jetbrains.Model;
 
-import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+
 @Entity
-@Table(name = "location")
 public class Location {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID locationId;
-
-    @Column(nullable = false, unique = true)
+    @Column
     private String locationCode;
-
-    @Column(nullable = false)
+    @Id
+    private UUID location_id = UUID.randomUUID();
+    @Column
     private String locationName;
-
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private LocationType locationType;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_id")
     private Location parent;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private List<Location> children;
 
+    @OneToMany(mappedBy = "village_id")
+    private List<User> users;
 
-
-    public UUID getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(UUID locationId) {
-        this.locationId = locationId;
+    public Location() {
     }
 
     public String getLocationCode() {
@@ -55,12 +54,28 @@ public class Location {
         this.locationName = locationName;
     }
 
+    public UUID getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(UUID location_id) {
+        this.location_id = location_id;
+    }
+
     public LocationType getLocationType() {
         return locationType;
     }
 
     public void setLocationType(LocationType locationType) {
         this.locationType = locationType;
+    }
+
+    public List<Location> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Location> children) {
+        this.children = children;
     }
 
     public Location getParent() {
@@ -71,11 +86,18 @@ public class Location {
         this.parent = parent;
     }
 
-    public List<Location> getChildren() {
-        return children;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setChildren(List<Location> children) {
-        this.children = children;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
+
+    public Location(UUID location_id) {
+        super();
+        this.location_id = location_id;
+    }
+
+
 }

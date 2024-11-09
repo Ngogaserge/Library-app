@@ -1,57 +1,57 @@
 package com.jetbrains.Model;
 
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class Person {
-    private String personId;
-    private String firstName;
-    private String lastName;
-
+public class Person {
+    @Id
+    private String person_id;
+    private String first_name;
+    private String last_name;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    private String phone_number;
 
-    private String phoneNumber;
 
-    public String getPersonId() {
-        return personId;
+    public Person() {
+        super();
     }
-
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public Person(String person_id) {
+        this.person_id = person_id;
     }
-
-    public String getFirstName() {
-        return firstName;
+    public String getPerson_id() {
+        return person_id;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPerson_id(String person_id) {
+        this.person_id = person_id;
     }
-
-    public String getLastName() {
-        return lastName;
+    public String getFirst_name() {
+        return first_name;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
-
+    public String getLast_name() {
+        return last_name;
+    }
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
     public Gender getGender() {
         return gender;
     }
-
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone_number() {
+        return phone_number;
+    }
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+
 }
