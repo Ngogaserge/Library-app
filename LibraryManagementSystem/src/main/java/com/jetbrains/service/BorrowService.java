@@ -5,6 +5,8 @@ import com.jetbrains.Model.User;
 import com.jetbrains.util.HibernateUtil;
 import org.hibernate.Session;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class BorrowService {
@@ -32,6 +34,20 @@ public class BorrowService {
             }
         }
         return null;
+    }
+
+    private static final double DAILY_LATE_FEE = 10;
+
+    public double calculateLateFee(LocalDate dueDate, LocalDate returnDate) {
+
+        if (returnDate.isAfter(dueDate)) {
+
+            long daysOverdue = ChronoUnit.DAYS.between(dueDate, returnDate);
+
+            return daysOverdue * DAILY_LATE_FEE;
+        } else {
+            return 0.0;  // No fee if returned on or before the due date
+        }
     }
 
     // Validates the user based on the number of books they can borrow

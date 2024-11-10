@@ -6,11 +6,13 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BorrowTests {
 
@@ -32,5 +34,15 @@ public class BorrowTests {
         borrower.setReader(new User(readerId));
         assertNotNull(service.saveBorrower(borrower));
     }
+    @Test
+    public void testOneDayLateFee() {
+        BorrowService service = new BorrowService();
+        LocalDate dueDate = LocalDate.of(2023, 11, 1);
+        LocalDate returnDate = LocalDate.of(2023, 11, 2);
+
+        double fee = service.calculateLateFee(dueDate, returnDate);
+        assertEquals(10, fee, "Fee should be 10 for one day late");
+    }
+
 
 }
